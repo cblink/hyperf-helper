@@ -1,0 +1,19 @@
+{
+    "name": "cblink/hyperf-ext",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick",
+            "email": "me@xieying.vip"
+        }
+    ],
+    "require": {
+        "cblink/laravel-dto": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cblink\\HyperfExt\\": "src"
+        }
+    }
+}
