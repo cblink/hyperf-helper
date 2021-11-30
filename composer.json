@@ -1,5 +1,5 @@
 {
-    "name": "cblink/hyperf-ext",
+    "name": "cblink/hyperf-helper",
     "description": "Package description here.",
     "license": "MIT",
     "authors": [
@@ -9,11 +9,15 @@
         }
     ],
     "require": {
-        "cblink/laravel-dto": "^2.0"
+        "cblink/laravel-dto": "^2.0",
+        "hyperf/utils": "^2.2"
     },
     "autoload": {
         "psr-4": {
             "Cblink\\HyperfExt\\": "src"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     }
 }

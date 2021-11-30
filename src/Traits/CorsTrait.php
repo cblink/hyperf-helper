@@ -1,6 +1,6 @@
 <?php
 
-namespace Cblink\HyperfExt;;
+namespace Cblink\HyperfExt\Traits;;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

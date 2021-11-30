@@ -1,11 +1,12 @@
 <?php
 
-namespace Cblink\HyperfExt;;
+namespace Cblink\HyperfExt;
 
+use Cblink\HyperfExt\Triats\ApiResponse;
 use Hyperf\Resource\Json\JsonResource;
 use Psr\Http\Message\ResponseInterface;
 
-class BaseResource extends JsonResource
+abstract class BaseResource extends JsonResource
 {
     use ApiResponse;
 

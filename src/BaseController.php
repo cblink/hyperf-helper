@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 namespace Cblink\HyperfExt;;
 
-use App\Base\ApiResponse;
+use Cblink\HyperfExt\Traits\ApiResponse;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;

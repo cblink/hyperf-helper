@@ -1,4 +1,4 @@
-<h1 align="center"> hyperf-ext </h1>
+<h1 align="center"> hyperf-helper </h1>
 
 <p align="center"> .</p>
 
@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require cblink/hyperf-ext -vvv
+$ composer require cblink/hyperf-helper -vvv
 ```
 
 ## Usage

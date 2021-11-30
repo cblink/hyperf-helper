@@ -2,6 +2,7 @@
 
 namespace Cblink\HyperfExt;
 
+use Cblink\HyperfExt\Triats\ApiResponse;
 use Hyperf\Resource\Json\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
 
