@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "php": ">=8.0",
         "cblink/laravel-dto": "^2.0",
         "hyperf/utils": "^2.2"
     },
@@ -19,5 +20,8 @@
         "files": [
             "helpers.php"
         ]
+    },
+    "require-dev": {
+        "cblink/hyperf-yapi-doc": "^0.1.0"
     }
 }
