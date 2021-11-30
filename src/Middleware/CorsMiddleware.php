@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Cblink\HyperfExt\Middleware;
 
-use Cblink\HyperfExt\CorsTrait;
+use Cblink\HyperfExt\Traits\CorsTrait;
 use Hyperf\Utils\Context;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
