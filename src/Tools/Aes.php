@@ -50,17 +50,9 @@ class Aes
     {
         $encrypted = base64_decode($encrypted);
 
-        $result = '';
-        $dataList = str_split($encrypted, 128);
-
-        foreach ($dataList as $item) {
-
-            $public ?
-                (openssl_public_decrypt($item, $decrypted, $key)) :
-                (openssl_private_decrypt($item, $decrypted, $key));
-
-            $result .= $decrypted;
-        }
+        $public ?
+            (openssl_public_decrypt($encrypted, $result, $key)) :
+            (openssl_private_decrypt($encrypted, $result, $key));
 
         if (empty($result)) {
             return [];

@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": ">=8.0",
+        "ext-openssl": "*",
         "cblink/laravel-dto": "^2.0",
         "hyperf/utils": "^2.2"
     },
