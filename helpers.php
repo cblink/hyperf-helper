@@ -109,8 +109,8 @@ if (!function_exists('remember')) {
      */
     function remember($key, $ttl, Closure $closure)
     {
-        if (cache()->has($key)) {
-            return cache()->get($key);
+        if (!empty($value = cache()->get($key))) {
+            return $value;
         }
 
         $value = $closure();
