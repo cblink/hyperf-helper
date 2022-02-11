@@ -5,6 +5,7 @@ namespace Cblink\HyperfExt;
 use Cblink\HyperfExt\Traits\ApiResponse;
 use Hyperf\Resource\Json\ResourceCollection;
 use Psr\Http\Message\ResponseInterface;
+use Hyperf\Paginator\LengthAwarePaginator;
 
 class BaseCollection extends ResourceCollection
 {
@@ -12,15 +13,20 @@ class BaseCollection extends ResourceCollection
 
     public function toResponse(): ResponseInterface
     {
+        $meta = [];
+
         if ($this->isPaginatorResource($this->resource)) {
-            return $this->success($this->toArray(), [
+            $meta = [
                 'per_page' => $this->resource->perPage(),
                 'page' => $this->resource->currentPage(),
-                'total' => $this->resource->total(),
-            ]);
+            ];
         }
 
-        return $this->success($this->toArray());
+        if ($this->resource instanceof LengthAwarePaginator) {
+            $meta['total'] = $this->resource->total();
+        }
+
+        return $this->success($this->toArray(), $meta);
     }
 
 }
