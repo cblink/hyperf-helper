@@ -115,7 +115,7 @@ if (!function_exists('remember')) {
 
         $value = $closure();
 
-        cache()->set($key, $ttl, $value);
+        cache()->set($key, $value, $ttl);
 
         return $value;
     }
