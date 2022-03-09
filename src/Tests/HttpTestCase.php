@@ -38,12 +38,12 @@ abstract class HttpTestCase extends TestCase
     }
 
     /**
-     * @param array $data
+     * @param TestResponse|array $data
      * @param array $struct
      * @param bool $meta
      * @throws \Throwable
      */
-    public function assertApiSuccess(TestResponse|array $data = [], array $struct = [], bool $meta = false)
+    public function assertApiSuccess($data = [], array $struct = [], bool $meta = false)
     {
         if ($data instanceof TestResponse) {
             $data = $data->response();
