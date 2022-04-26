@@ -66,6 +66,36 @@ if (!function_exists('event')) {
     }
 }
 
+if (! function_exists('real_ip')) {
+    /**
+     * 获取真实ip.
+     *
+     * @param null|mixed $request
+     * @return mixed
+     */
+    function real_ip($request = null)
+    {
+        $request = $request ?? make(\Hyperf\HttpServer\Contract\RequestInterface::class);
+
+        $ip = $request->getHeader('x-real-ip');
+
+        if (empty($ip)) {
+            $ip = $request->getHeader('x-forwarded-for');
+        }
+
+        if (empty($ip)) {
+            $ip = $request->getServerParams()['remote_addr'] ?? '127.0.0.1';
+        }
+
+        if (is_array($ip)) {
+            $ip = \Hyperf\Utils\Arr::first($ip);
+        }
+
+        return \Hyperf\Utils\Arr::first(explode(',', $ip));
+    }
+}
+
+
 if (!function_exists('asyncQueue')) {
     /**
      * 投递队列
@@ -131,7 +161,7 @@ if (!function_exists('config_set')) {
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
-    function config_set($key, $value): mixed
+    function config_set($key, $value)
     {
         return app()->get(\Hyperf\Contract\ConfigInterface::class)->set($key, $value);
     }
@@ -179,5 +209,18 @@ if (! function_exists('throw_unless')) {
         throw_if(! $condition, $exception, ...$parameters);
 
         return $condition;
+    }
+}
+
+if (! function_exists('redis')) {
+    /**
+     * redis用例.
+     *
+     * @param string $driver
+     * @return \Hyperf\Redis\RedisProxy
+     */
+    function redis(string $driver = 'default')
+    {
+        return make(\Hyperf\Redis\RedisFactory::class)->get($driver);
     }
 }

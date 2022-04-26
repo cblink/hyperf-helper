@@ -15,7 +15,7 @@ abstract class BaseResource extends JsonResource
      */
     public function toResponse(): ResponseInterface
     {
-        return $this->success($this->toArray());
+        return $this->success(is_null($this->resource) ? [] : $this->toArray());
     }
 
 }
