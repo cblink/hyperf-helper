@@ -11,11 +11,16 @@ abstract class BaseResource extends JsonResource
     use ApiResponse;
 
     /**
+     * @var bool
+     */
+    protected $tolerance = true;
+
+    /**
      * @return ResponseInterface
      */
     public function toResponse(): ResponseInterface
     {
-        return $this->success(is_null($this->resource) ? [] : $this->toArray());
+        return $this->success($this->tolerance && is_null($this->resource) ? [] : $this->toArray());
     }
 
 }
