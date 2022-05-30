@@ -10,7 +10,7 @@ class Tree
      * 无限极递归
      *
      * @param array $data
-     * @param int $parentId
+     * @param int|string $parentId
      * @param string $keyName
      * @param string $childKeyName
      * @param string $idKeyName
@@ -18,10 +18,10 @@ class Tree
      */
     public static function transfer(
         array  $data,
-        int    $parentId = 0,
+        $parentId = 0,
         string $keyName = 'parent_id',
         string $idKeyName = 'id',
-        string $childKeyName = 'children',
+        string $childKeyName = 'children'
     ): array
     {
         $result = (new Collection($data))->where($keyName, $parentId)->all();
