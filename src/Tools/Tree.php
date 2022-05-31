@@ -24,22 +24,24 @@ class Tree
         string $childKeyName = 'children'
     ): array
     {
-        $result = (new Collection($data))->where($keyName, $parentId)->values()->all();
+        return (new Collection($data))
+            ->where($keyName, $parentId)
+            ->values()
+            ->map(function($item) use ($data, $childKeyName, $keyName, $idKeyName){
+                $item[$childKeyName] = array_values(self::transfer(
+                    $data,
+                    $item[$idKeyName],
+                    $keyName,
+                    $idKeyName,
+                    $childKeyName)
+                );
 
-        return array_map(function ($item) use ($data, $childKeyName, $keyName, $idKeyName) {
-            $item[$childKeyName] = array_values(self::transfer(
-                $data,
-                $item[$idKeyName],
-                $keyName,
-                $idKeyName,
-                $childKeyName)
-            );
+                if (empty($item[$childKeyName])) {
+                    unset($item[$childKeyName]);
+                }
 
-            if (empty($item[$childKeyName])) {
-                unset($item[$childKeyName]);
-            }
-
-            return $item;
-        }, $result);
+                return $item;
+            })
+            ->toArray();
     }
 }
