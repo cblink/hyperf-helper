@@ -24,7 +24,7 @@ class Tree
         string $childKeyName = 'children'
     ): array
     {
-        $result = (new Collection($data))->where($keyName, $parentId)->all();
+        $result = (new Collection($data))->where($keyName, $parentId)->values()->all();
 
         return array_map(function ($item) use ($data, $childKeyName, $keyName, $idKeyName) {
             $item[$childKeyName] = array_values(self::transfer(
@@ -39,7 +39,7 @@ class Tree
                 unset($item[$childKeyName]);
             }
 
-            return array_values($item);
+            return $item;
         }, $result);
     }
 }
