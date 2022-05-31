@@ -39,7 +39,7 @@ class Tree
                 unset($item[$childKeyName]);
             }
 
-            return $item;
+            return array_values($item);
         }, $result);
     }
 }
