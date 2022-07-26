@@ -77,10 +77,10 @@ if (! function_exists('real_ip')) {
     {
         $request = $request ?? make(\Hyperf\HttpServer\Contract\RequestInterface::class);
 
-        $ip = $request->getHeader('x-real-ip');
+        $ip = $request->getHeader('x-forwarded-for');
 
         if (empty($ip)) {
-            $ip = $request->getHeader('x-forwarded-for');
+            $ip = $request->getHeader('x-real-ip');
         }
 
         if (empty($ip)) {
