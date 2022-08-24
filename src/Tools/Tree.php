@@ -12,8 +12,9 @@ class Tree
      * @param array $data
      * @param int|string $parentId
      * @param string $keyName
-     * @param string $childKeyName
      * @param string $idKeyName
+     * @param string $childKeyName
+     * @param array $sort
      * @return void[]
      */
     public static function transfer(
@@ -21,20 +22,28 @@ class Tree
         $parentId = 0,
         string $keyName = 'parent_id',
         string $idKeyName = 'id',
-        string $childKeyName = 'children'
+        string $childKeyName = 'children',
+        array $sort = []
     ): array
     {
         return (new Collection($data))
             ->where($keyName, $parentId)
             ->values()
-            ->map(function($item) use ($data, $childKeyName, $keyName, $idKeyName){
+            ->when(!empty($sort), function (Collection $collect) use($sort){
+                foreach ($sort as $key => $val) {
+                    $collect = $collect->{$val == 'desc'? 'sortByDesc' : 'sortBy'}($key);
+                }
+                return $collect;
+            })
+            ->map(function($item) use ($data, $childKeyName, $keyName, $idKeyName, $sort){
                 $item[$childKeyName] = array_values(self::transfer(
                     $data,
                     $item[$idKeyName],
                     $keyName,
                     $idKeyName,
-                    $childKeyName)
-                );
+                    $childKeyName,
+                    $sort
+                ));
 
                 if (empty($item[$childKeyName])) {
                     unset($item[$childKeyName]);
