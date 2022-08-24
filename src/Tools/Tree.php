@@ -30,10 +30,7 @@ class Tree
             ->where($keyName, $parentId)
             ->values()
             ->when(!empty($sort), function (Collection $collect) use($sort){
-                foreach ($sort as $key => $val) {
-                    $collect = $collect->{$val == 'desc'? 'sortByDesc' : 'sortBy'}($key);
-                }
-                return $collect;
+                return $collect->sortBy($sort);
             })
             ->map(function($item) use ($data, $childKeyName, $keyName, $idKeyName, $sort){
                 $item[$childKeyName] = array_values(self::transfer(
