@@ -26,22 +26,6 @@ if (!function_exists('logger')) {
     }
 }
 
-if (!function_exists('auth')) {
-    /**
-     * 认证组件
-     *
-     * @param string|null $guard
-     * @return \HyperfExt\Auth\Contracts\GuardInterface|\HyperfExt\Auth\Contracts\StatefulGuardInterface|\HyperfExt\Auth\Contracts\StatelessGuardInterface
-     */
-    function auth(string $guard = null) {
-
-        if (is_null($guard)) $guard = config('auth.default.guard');
-
-        return make(\HyperfExt\Auth\Contracts\AuthManagerInterface::class)
-            ->guard($guard);
-    }
-}
-
 if (!function_exists('cache')) {
     /**
      * 获取缓存驱动
