@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Cblink\HyperfExt\Middleware;
 
 use Cblink\HyperfExt\Traits\CorsTrait;
-use Hyperf\Utils\Context;
+use Hyperf\Context\Context;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -13,7 +13,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 class CorsMiddleware implements MiddlewareInterface
 {
     use CorsTrait;
-
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $this->corsResponse($request, Context::get(ResponseInterface::class));
