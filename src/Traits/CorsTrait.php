@@ -18,7 +18,7 @@ trait CorsTrait
             ->withHeader('Access-Control-Allow-Origin',
             in_array('*', config('cors.allowed_origins')) ?
                 $request->getHeader('Origin') :
-                (array_intersect($request->getHeader('Origin'), config('cors.allowed_origins')) ? $request->getHeader('Origin') : current(config('cors.allowed_origins')))
+                (array_intersect($request->getHeader('Origin'), config('cors.allowed_origins')) ? $request->getHeader('Origin') : '')
             )
             ->withHeader('Vary',
                 !$request->getHeader('Vary') ?
@@ -29,7 +29,7 @@ trait CorsTrait
                 implode(', ',
                     array_map('strtolower',in_array('*', config('cors.allowed_headers')) ?
                         $request->getHeader('Access-Control-Request-Headers') :
-                        config('cors.allowed_methods'))
+                        config('cors.allowed_headers'))
                 ))
             ->withHeader(
                 'Access-Control-Allow-Methods',
