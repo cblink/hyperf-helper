@@ -23,7 +23,7 @@ class MobileRule implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() :array|string
     {
         return '请输入有效的手机号!';
     }

@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^8.0|^7.4|^8.1",
+        "php": "^8.0|^7.4",
         "ext-openssl": "*",
         "cblink/laravel-dto": "^2.0",
         "hyperf/utils": "^2.2|^3.0",

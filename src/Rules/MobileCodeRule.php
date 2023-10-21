@@ -16,7 +16,7 @@ class MobileCodeRule implements Rule
         return in_array($value, ['86']);
     }
 
-    public function message()
+    public function message() :array|string
     {
         return '暂不支持的区号!';
     }

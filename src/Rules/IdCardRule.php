@@ -22,7 +22,7 @@ class IdCardRule implements Rule
         return substr($value, -1) == $this->iso7064(substr($value, 0, 17));
     }
 
-    public function message()
+    public function message() :array|string
     {
         return '请输入有效的身份证号码!';
     }
