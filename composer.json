@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.0|^7.4",
         "ext-openssl": "*",
-        "cblink/laravel-dto": "^2.0",
+        "cblink/laravel-dto": "^3.0",
         "hyperf/utils": "^2.2|^3.0",
         "hyperf/context": "^2.2|^3.0"
     },
@@ -24,6 +24,6 @@
         ]
     },
     "require-dev": {
-        "cblink/hyperf-yapi-doc": "^0.1.0"
+        "cblink/hyperf-yapi-doc": "^0.3.0"
     }
 }
