@@ -2,7 +2,7 @@
 
 namespace Cblink\HyperfExt\Tools;
 
-use Hyperf\Utils\Collection;
+use Hyperf\Collection\Collection;
 
 class Tree
 {

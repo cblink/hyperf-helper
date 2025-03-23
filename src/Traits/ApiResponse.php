@@ -3,7 +3,7 @@
 namespace Cblink\HyperfExt\Traits;
 
 use Hyperf\HttpMessage\Stream\SwooleStream;
-use Hyperf\Utils\Codec\Json;
+use Hyperf\Codec\Json;
 use Hyperf\Context\Context;
 use Psr\Http\Message\ResponseInterface;
 

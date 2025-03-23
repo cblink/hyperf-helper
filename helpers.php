@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use function Hyperf\Support\make;
 if (!function_exists('app')) {
     /**
      * 获取容器实例
@@ -9,7 +10,7 @@ if (!function_exists('app')) {
      */
     function app(): \Psr\Container\ContainerInterface
     {
-        return  \Hyperf\Utils\ApplicationContext::getContainer();
+        return  \Hyperf\Context\ApplicationContext::getContainer();
     }
 }
 
@@ -17,9 +18,11 @@ if (!function_exists('logger')) {
     /**
      * 日志组件
      *
+     * @param string $group
+     *
      * @return \Psr\Log\LoggerInterface
      */
-    function logger(string $group = 'default')
+    function logger(string $group = 'default'): \Psr\Log\LoggerInterface
     {
         return make(\Hyperf\Logger\LoggerFactory::class)
             ->get('default', $group);
@@ -72,10 +75,10 @@ if (! function_exists('real_ip')) {
         }
 
         if (is_array($ip)) {
-            $ip = \Hyperf\Utils\Arr::first($ip);
+            $ip = Hyperf\Collection\Arr::first($ip);
         }
 
-        return \Hyperf\Utils\Arr::first(explode(',', $ip));
+        return Hyperf\Collection\Arr::first(explode(',', $ip));
     }
 }
 
@@ -101,10 +104,9 @@ if (!function_exists('redirect')) {
      *
      * @param string $url
      * @param int $status
-     * @param string $schema
      * @return \Psr\Http\Message\ResponseInterface
      */
-    function redirect(string $url, int $status = 302, string $schema = 'http')
+    function redirect(string $url, int $status = 302): \Psr\Http\Message\ResponseInterface
     {
         return make(\Hyperf\HttpServer\Contract\ResponseInterface::class)->redirect($url, $status);
     }
@@ -203,7 +205,7 @@ if (! function_exists('redis')) {
      * @param string $driver
      * @return \Hyperf\Redis\RedisProxy
      */
-    function redis(string $driver = 'default')
+    function redis(string $driver = 'default'): \Hyperf\Redis\RedisProxy
     {
         return make(\Hyperf\Redis\RedisFactory::class)->get($driver);
     }

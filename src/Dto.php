@@ -4,6 +4,7 @@ namespace Cblink\HyperfExt;
 
 use Cblink\Dto\Dto as BaseDto;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use function Hyperf\Support\make;
 
 abstract class Dto extends BaseDto
 {
